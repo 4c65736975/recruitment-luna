@@ -1,0 +1,3 @@
+[submodule "recruitment-luna"]
+	path = recruitment-luna
+	url = https://gitlab.com/piotrdurniat/recruitment-luna
