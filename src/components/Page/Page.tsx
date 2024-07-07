@@ -19,7 +19,7 @@ const Page: React.FC<IPageProps> = ({ header, children, extraContent, breadcrumb
     <div className={styles.pageContainer} {...props}>
       <div className={styles.pageTopContainer}>
         <div className={styles.pageHeaderContainer}>
-          {breadcrumbList && <Breadcrumb list={breadcrumbList}/>}
+          {breadcrumbList && <Breadcrumb list={breadcrumbList} divider="slash"/>}
 
           <Text preset="Title2">
             {header}
