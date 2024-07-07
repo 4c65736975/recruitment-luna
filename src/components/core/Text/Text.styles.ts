@@ -16,7 +16,8 @@ const useStyles = makeStyles({
     display: "inline",
     whiteSpace: "normal",
     overflow: "visible",
-    textOverflow: "clip"
+    textOverflow: "clip",
+    color: webLightTheme.colorNeutralForeground1
   },
   base100: {
     fontSize: webLightTheme.fontSizeBase100,
