@@ -12,11 +12,11 @@ import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import { usePageStyles } from "./Page.styles";
 import { IPageProps } from "./Page.types";
 
-const Page: React.FC<IPageProps> = ({ header, children, extraContent, breadcrumbList, ...props }) => {
+const Page: React.FC<IPageProps> = ({ header, children, extraContent, breadcrumbList }) => {
   const styles = usePageStyles();
 
   return (
-    <div className={styles.pageContainer} {...props}>
+    <div className={styles.pageContainer}>
       <div className={styles.pageTopContainer}>
         <div className={styles.pageHeaderContainer}>
           {breadcrumbList && <Breadcrumb list={breadcrumbList} divider="slash"/>}

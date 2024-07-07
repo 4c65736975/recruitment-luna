@@ -7,20 +7,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from "react";
 import Text from "../Text/Text";
 import { NavLink } from "react-router-dom";
 import { INavigationLinkProps } from "./NavigationLink.types";
 import { useNavigationLinkStyles } from "./NavigationLink.styles";
 import { mergeClasses } from "@griffel/react";
 
-const NavigationLink: React.FC<INavigationLinkProps> = ({ icon: Icon, name, to, disabled, ...props }) => {
+const NavigationLink: React.FC<INavigationLinkProps> = ({ icon: Icon, name, to, disabled, className, ...props }) => {
   const styles = useNavigationLinkStyles();
 
   return (
     <NavLink
       to={to}
-      className={mergeClasses(styles.navigationLink, disabled && styles.navigationDisabled)}
+      className={mergeClasses(
+        styles.navigationLink,
+        disabled && styles.navigationDisabled,
+        className
+      )}
       {...props}>
 
       <Icon fontSize={20}/>

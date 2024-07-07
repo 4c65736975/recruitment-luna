@@ -9,7 +9,7 @@
 
 import { IBreadcrumbItem } from "../Breadcrumb/Breadcrumb.types";
 
-export interface IPageProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface IPageProps {
   header: string
   children: React.ReactNode
   extraContent?: React.ReactNode

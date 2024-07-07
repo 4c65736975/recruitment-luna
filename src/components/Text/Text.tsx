@@ -7,19 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { mergeClasses } from "@griffel/react";
 import { useTextStyles } from "./Text.styles";
 import { TTextProps } from "./Text.types";
 
-const defaultElement = "span";
-
-const Text: React.FC<TTextProps> = (props) => {
-  const Component = props.as ?? defaultElement;
+const Text: React.FC<TTextProps> = ({ className, ...props}) => {
   const styles = useTextStyles(props);
 
   return (
-    <Component className={styles} {...props}>
+    <span className={mergeClasses(styles, className)} {...props}>
       {props.children}
-    </Component>
+    </span>
   );
 };
 

@@ -34,8 +34,7 @@ export type TTextPreset =
   | "LargeTitle"
   | "Display";
 
-interface IBaseTextProps {
-  as?: React.ElementType
+interface IBaseTextProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactNode
 }
 
