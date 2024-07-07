@@ -11,6 +11,7 @@ import { IBreadcrumbItem } from "../core/Breadcrumb/Breadcrumb.types";
 
 export interface IPageProps {
   header: string
+  loading?: boolean
   children: React.ReactNode
   extraContent?: React.ReactNode
   breadcrumbList?: IBreadcrumbItem[]

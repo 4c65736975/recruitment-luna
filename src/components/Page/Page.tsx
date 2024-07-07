@@ -11,8 +11,11 @@ import Text from "../core/Text/Text";
 import Breadcrumb from "../core/Breadcrumb/Breadcrumb";
 import { usePageStyles } from "./Page.styles";
 import { IPageProps } from "./Page.types";
+import Skeleton from "../core/Skeleton/Skeleton";
 
-const Page: React.FC<IPageProps> = ({ header, children, extraContent, breadcrumbList }) => {
+const Page: React.FC<IPageProps> = (props) => {
+  const { header, loading, children, extraContent, breadcrumbList } = props;
+
   const styles = usePageStyles();
 
   return (
@@ -21,9 +24,7 @@ const Page: React.FC<IPageProps> = ({ header, children, extraContent, breadcrumb
         <div className={styles.pageHeaderContainer}>
           {breadcrumbList && <Breadcrumb list={breadcrumbList} divider="slash"/>}
 
-          <Text preset="Title2">
-            {header}
-          </Text>
+          {loading ? <Skeleton width={250} height={36}/> : <Text preset="Title2">{header}</Text>}
         </div>
 
         {extraContent}
