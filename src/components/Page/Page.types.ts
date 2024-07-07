@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IBreadcrumbItem } from "../Breadcrumb/Breadcrumb.types";
+import { IBreadcrumbItem } from "../core/Breadcrumb/Breadcrumb.types";
 
 export interface IPageProps {
   header: string

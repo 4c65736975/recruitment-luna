@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Text from "../Text/Text";
-import Breadcrumb from "../Breadcrumb/Breadcrumb";
+import Text from "../core/Text/Text";
+import Breadcrumb from "../core/Breadcrumb/Breadcrumb";
 import { usePageStyles } from "./Page.styles";
 import { IPageProps } from "./Page.types";
 

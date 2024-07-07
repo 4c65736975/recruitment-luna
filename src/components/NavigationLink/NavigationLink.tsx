@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Text from "../Text/Text";
+import Text from "../core/Text/Text";
 import { NavLink } from "react-router-dom";
 import { INavigationLinkProps } from "./NavigationLink.types";
 import { useNavigationLinkStyles } from "./NavigationLink.styles";
