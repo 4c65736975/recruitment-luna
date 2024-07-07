@@ -1,6 +1,6 @@
 import RootLayout from "./layouts/RootLayout";
-import ModulePage from "./pages/ModulePage";
-import ModulesPage from "./pages/ModulesPage";
+import ModulePage from "./pages/Module/ModulePage";
+import ModulesPage from "./pages/Modules/ModulesPage";
 import { useAppStyles } from "./App.styles";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
