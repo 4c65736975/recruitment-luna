@@ -14,5 +14,5 @@ export const getIsCurrentTempInRange = (current: number, target: number): boolea
 };
 
 export const toCelsius = (value: number): string => {
-  return value.toFixed(2) + "°C";
+  return value.toFixed(1) + "°C";
 };
