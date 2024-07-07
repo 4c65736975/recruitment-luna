@@ -27,17 +27,7 @@ export const useBreadcrumbStyles = makeStyles({
       color: webLightTheme.colorNeutralForeground2
     }
   },
-  breadcrumbLink: {
-    borderRadius: webLightTheme.borderRadiusMedium,
-    padding: `${webLightTheme.spacingVerticalSNudge} ${webLightTheme.spacingHorizontalSNudge}`,
-
-    "&:hover": {
-      background: webLightTheme.colorSubtleBackgroundHover,
-      textDecoration: "none"
-    },
-
-    "&:active": {
-      background: webLightTheme.colorSubtleBackgroundPressed
-    }
+  breadcrumbSlashDivider: {
+    marginLeft: webLightTheme.spacingHorizontalXS
   }
 });

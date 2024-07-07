@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+type TBreadcrumbDivider = "arrow" | "slash";
+
 export interface IBreadcrumbItem {
   key: React.Key
   name: string
@@ -16,4 +18,5 @@ export interface IBreadcrumbItem {
 
 export interface IBreadcrumbProps {
   list: IBreadcrumbItem[]
+  divider?: TBreadcrumbDivider
 }

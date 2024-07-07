@@ -9,11 +9,12 @@
 
 import React from "react";
 import Link from "../Link/Link";
+import Text from "../Text/Text";
 import { useBreadcrumbStyles } from "./Breadcrumb.styles";
 import { IBreadcrumbProps } from "./Breadcrumb.types";
 import { ChevronRightRegular } from "@fluentui/react-icons";
 
-const Breadcrumb: React.FC<IBreadcrumbProps> = ({ list }) => {
+const Breadcrumb: React.FC<IBreadcrumbProps> = ({ list, divider }) => {
   const styles = useBreadcrumbStyles();
   const listLength = list.length - 1;
 
@@ -24,19 +25,14 @@ const Breadcrumb: React.FC<IBreadcrumbProps> = ({ list }) => {
           {list.map((item, index) => (
             <React.Fragment key={item.key || index}>
               <li className={styles.breadcrumbItem}>
-                <Link
-                  to={item.path}
-                  appearance="subtle"
-                  disabled={index === listLength || item.disabled}
-                  className={styles.breadcrumbLink}>
-
+                <Link to={item.path} disabled={index === listLength || item.disabled}>
                   {item.name}
                 </Link>
               </li>
 
               {index < listLength && (
                 <li className={styles.breadcrumbItem}>
-                  <ChevronRightRegular/>
+                  {divider === "slash" ? <Text className={styles.breadcrumbSlashDivider}>/</Text> : <ChevronRightRegular/>}
                 </li>
               )}
             </React.Fragment>
