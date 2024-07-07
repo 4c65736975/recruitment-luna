@@ -26,7 +26,8 @@ export const usePageStyles = makeStyles({
   },
   pageHeaderContainer: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    gap: webLightTheme.spacingHorizontalXS
   },
   pageContentContainer: {
     padding: `${webLightTheme.spacingVerticalXXXL} ${webLightTheme.spacingHorizontalXXXL}`
