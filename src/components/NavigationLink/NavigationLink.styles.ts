@@ -55,6 +55,10 @@ export const useNavigationLinkStyles = makeStyles({
   },
   navigationDisabled: {
     color: webLightTheme.colorNeutralForegroundDisabled,
-    pointerEvents: "none"
+    pointerEvents: "none",
+
+    "> *": {
+      color: webLightTheme.colorNeutralForegroundDisabled
+    }
   }
 });
