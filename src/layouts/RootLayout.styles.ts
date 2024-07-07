@@ -24,6 +24,25 @@ export const useRootLayoutStyles = makeStyles({
     color: webLightTheme.colorNeutralForegroundOnBrand,
     "> *": {
       color: webLightTheme.colorNeutralForegroundOnBrand
+    },
+    gap: "10px"
+  },
+  navigationButton: {
+    minWidth: "48px",
+    maxWidth: "48px",
+    height: "100%",
+    borderRightColor: webLightTheme.colorCompoundBrandStrokePressed,
+
+    "&:hover:not(:disabled)": {
+      background: webLightTheme.colorCompoundBrandForeground1Hover,
+      borderRightColor: webLightTheme.colorCompoundBrandStrokePressed,
+      color: webLightTheme.colorNeutralForegroundOnBrand
+    },
+
+    "&:active:not(:disabled)": {
+      background: webLightTheme.colorCompoundBrandForeground1Pressed,
+      borderRightColor: webLightTheme.colorCompoundBrandStrokePressed,
+      color: webLightTheme.colorNeutralForegroundOnBrand
     }
   },
   contentContainer: {
