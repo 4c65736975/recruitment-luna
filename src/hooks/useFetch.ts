@@ -9,29 +9,37 @@
 
 import React from "react";
 
-interface IFetchResult<T> {
-  data: T | null;
-  response: Response;
-  error: Error | null;
-}
+export const useFetch = <T>(url: string, defaultValue: T, options?: RequestInit): [T, React.Dispatch<React.SetStateAction<T>>, boolean, Error | null] => {
+  const [data, setData] = React.useState<T>(defaultValue);
+  const [error, setError] = React.useState<Error | null>(null);
+  const [loading, setLoading] = React.useState<boolean>(true);
 
-export const useFetch = () => {
-  const request = React.useCallback(async <T>(url: string, options?: RequestInit): Promise<IFetchResult<T>> => {
+  const fetchData = React.useCallback(async () => {
+    setLoading(true);
+
     try {
       const response = await fetch(url, options);
-      const data = await response.json();
 
       if (!response.ok) {
         throw new Error(response.statusText);
       }
 
-      return { data, response, error: null };
-    } catch (error) {
-      const err = error instanceof Error ? error : new Error(String(error));
+      const result = await response.json();
 
-      return { data: null, response: null as never, error: err };
+      setData(result);
+      setError(null);
+    } catch (err) {
+      setData(defaultValue);
+      setError(err instanceof Error ? err : new Error(String(err)));
+    } finally {
+      setLoading(false);
     }
+  }, [defaultValue, options, url]);
+
+  React.useEffect(() => {
+    fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return request;
+  return [data, setData, loading, error];
 };
