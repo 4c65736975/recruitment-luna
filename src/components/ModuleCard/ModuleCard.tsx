@@ -31,6 +31,7 @@ const ModuleCardInfo: React.FC<IModuleCardInfoProps> = (props) => {
 
 const ModuleCard: React.FC<IModuleCardProps> = (props) => {
   const { module } = props;
+
   const styles = useModuleCardStyles();
 
   const getTemperatureClass = (currentTemp: number, targetTemp: number) =>
