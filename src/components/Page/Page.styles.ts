@@ -31,6 +31,9 @@ export const usePageStyles = makeStyles({
   },
   pageContentContainer: {
     height: "100%",
-    padding: `${webLightTheme.spacingVerticalXXXL} ${webLightTheme.spacingHorizontalXXXL}`
+    padding: `${webLightTheme.spacingVerticalXXXL} ${webLightTheme.spacingHorizontalXXXL}`,
+
+    containerType: "inline-size",
+    containerName: "page-content-container"
   }
 });
