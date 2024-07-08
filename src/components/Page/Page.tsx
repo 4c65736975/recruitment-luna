@@ -27,7 +27,9 @@ const Page: React.FC<IPageProps> = (props) => {
           {loading ? <Skeleton width={250} height={36}/> : <Text preset="Title2">{header}</Text>}
         </div>
 
-        {extraContent}
+        <div className={styles.pageHeaderExtraContentContainer}>
+          {extraContent}
+        </div>
       </div>
 
       <div className={styles.pageContentContainer}>

@@ -18,8 +18,10 @@ export const usePageStyles = makeStyles({
   },
   pageTopContainer: {
     display: "flex",
+    flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "space-between",
+    gap: webLightTheme.spacingVerticalL,
     padding: `${webLightTheme.spacingVerticalXXXL} ${webLightTheme.spacingHorizontalXXXL}`,
     borderBottom: `${webLightTheme.strokeWidthThin} solid ${webLightTheme.colorNeutralStroke1}`,
     background: webLightTheme.colorNeutralBackground2
@@ -32,8 +34,13 @@ export const usePageStyles = makeStyles({
   pageContentContainer: {
     height: "100%",
     padding: `${webLightTheme.spacingVerticalXXXL} ${webLightTheme.spacingHorizontalXXXL}`,
+    overflowY: "auto",
 
     containerType: "inline-size",
     containerName: "page-content-container"
+  },
+  pageHeaderExtraContentContainer: {
+    display: "flex",
+    gap: webLightTheme.spacingVerticalS
   }
 });
