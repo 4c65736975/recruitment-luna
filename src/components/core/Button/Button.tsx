@@ -8,7 +8,6 @@
  */
 
 import React from "react";
-import Text from "../Text/Text";
 import { mergeClasses } from "@griffel/react";
 import { useButtonStyles } from "./Button.styles";
 import { IButtonProps } from "./Button.types";
@@ -25,7 +24,7 @@ const Button: React.FC<IButtonProps> = (props) => {
   return (
     <button className={mergeClasses(styles, className)} {...restProps}>
       {icon && iconPosition !== "after" && React.createElement(icon, { fontSize: 20 })}
-      {children && <Text weight="semibold">{children}</Text>}
+      {children}
       {icon && iconPosition === "after" && React.createElement(icon, { fontSize: 20 })}
     </button>
   );

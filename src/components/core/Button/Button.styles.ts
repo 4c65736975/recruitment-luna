@@ -29,6 +29,10 @@ const useStyles = makeStyles({
     transitionDuration: webLightTheme.durationFaster,
     transitionProperty: "background, border, color",
     transitionTimingFunction: webLightTheme.curveEasyEase,
+    fontFamily: webLightTheme.fontFamilyBase,
+    fontSize: webLightTheme.fontSizeBase300,
+    lineHeight: webLightTheme.lineHeightBase300,
+    fontWeight: webLightTheme.fontWeightSemibold,
     color: webLightTheme.colorNeutralForeground1,
 
     "&:hover:not(:disabled)": {
