@@ -30,6 +30,7 @@ export const usePageStyles = makeStyles({
     gap: webLightTheme.spacingHorizontalXS
   },
   pageContentContainer: {
+    height: "100%",
     padding: `${webLightTheme.spacingVerticalXXXL} ${webLightTheme.spacingHorizontalXXXL}`
   }
 });
