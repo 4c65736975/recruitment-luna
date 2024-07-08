@@ -18,6 +18,7 @@ export const useRootLayoutStyles = makeStyles({
   },
   topBarContainer: {
     height: "48px",
+    minHeight: "48px",
     display: "flex",
     alignItems: "center",
     background: webLightTheme.colorBrandBackground,
@@ -46,12 +47,13 @@ export const useRootLayoutStyles = makeStyles({
     }
   },
   contentContainer: {
-    height: "100%",
+    height: "calc(100vh - 48px)",
     display: "flex"
   },
   navigationContainer: {
     width: "100%",
     maxWidth: "320px",
+    minWidth: "48px",
     height: "100%",
     display: "flex",
     flexDirection: "column",
@@ -63,8 +65,7 @@ export const useRootLayoutStyles = makeStyles({
     containerName: "navigation-container",
 
     "[data-compact='true']": {
-      maxWidth: "48px",
-      minWidth: "48px"
+      maxWidth: "48px"
     }
   },
   navigationBottomContainer: {
