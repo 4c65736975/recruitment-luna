@@ -63,7 +63,8 @@ export const useRootLayoutStyles = makeStyles({
     containerName: "navigation-container",
 
     "[data-compact='true']": {
-      maxWidth: "48px"
+      maxWidth: "48px",
+      minWidth: "48px"
     }
   },
   navigationBottomContainer: {
