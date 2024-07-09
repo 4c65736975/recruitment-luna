@@ -7,5 +7,13 @@ export default defineConfig(({ command }) => ({
   plugins: [
     react(),
     command === "build" && griffel()
-  ]
+  ],
+  resolve: {
+    alias: [
+      {
+        find: "@",
+        replacement: "/src"
+      }
+    ]
+  }
 }));
