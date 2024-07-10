@@ -1,13 +1,12 @@
-import RootLayout from "./layouts/RootLayout";
-import ModulePage from "./pages/Module/ModulePage";
-import ModulesPage from "./pages/Modules/ModulesPage";
+import { ModulesPage } from "./pages/ModulesPage";
 import { useAppStyles } from "./App.styles";
+import { DashboardLayout } from "@/layouts/Dashboard";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
     path: "/modules",
-    element: <RootLayout/>,
+    element: <DashboardLayout/>,
     children: [
       {
         index: true,
@@ -15,7 +14,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/modules/:id",
-        element: <ModulePage/>
+        element: <div>Place module details page</div>
       }
     ]
   }
