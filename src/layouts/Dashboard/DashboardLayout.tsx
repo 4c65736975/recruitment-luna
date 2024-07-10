@@ -23,9 +23,11 @@ export const DashboardLayout: React.FC = () => {
   const [isCompactMode, setIsCompactMode] = React.useState(storage.get("navCompact", false));
 
   const onNavigationModeChange = () => {
-    setIsCompactMode(!isCompactMode);
+    const mode = !isCompactMode;
 
-    storage.set("navCompact", !isCompactMode);
+    setIsCompactMode(mode);
+
+    storage.set("navCompact", mode);
   };
 
   return (
