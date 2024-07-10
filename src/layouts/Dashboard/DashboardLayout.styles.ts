@@ -33,7 +33,9 @@ export const useDashboardLayoutStyles = makeStyles({
     minWidth: "48px",
     maxWidth: "48px",
     height: "100%",
-    borderRightColor: webLightTheme.colorCompoundBrandStrokePressed,
+    border: "none",
+    borderRadius: "none",
+    borderRight: `${webLightTheme.strokeWidthThin} solid ${webLightTheme.colorCompoundBrandStrokePressed}`,
 
     "&:hover:not(:disabled)": {
       background: webLightTheme.colorCompoundBrandForeground1Hover,
