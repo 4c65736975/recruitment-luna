@@ -38,6 +38,7 @@ export const usePageLayoutStyles = makeStyles({
   contentContainer: {
     height: "100%",
     padding: `${webLightTheme.spacingVerticalXXXL} ${webLightTheme.spacingHorizontalXXXL}`,
+    overflowX: "hidden",
     overflowY: "auto",
 
     containerType: "inline-size",
