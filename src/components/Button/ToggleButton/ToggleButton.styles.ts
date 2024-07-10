@@ -39,6 +39,7 @@ export const useToggleButtonStyles = (props: Partial<IToggleButtonProps>): strin
     props.checked && props.appearance === "primary" && styles.primary,
     props.checked && props.appearance === "outline" && styles.outline,
     props.checked && props.appearance === "subtle" && styles.subtle,
-    props.checked && props.appearance === "transparent" && styles.transparent
+    props.checked && props.appearance === "transparent" && styles.transparent,
+    props.className
   );
 };

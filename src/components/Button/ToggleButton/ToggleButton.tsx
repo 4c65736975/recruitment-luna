@@ -14,12 +14,13 @@ import { useToggleButtonStyles } from "./ToggleButton.styles";
 import { useControlledState } from "./useControlledState";
 
 export const ToggleButton: React.FC<IToggleButtonProps> = (props) => {
-  const { checked, children, ...restProps } = props;
+  const { checked, children, className, ...restProps } = props;
 
   const [state, setState] = useControlledState(checked, false);
 
   const styles = useToggleButtonStyles({
     checked: state,
+    className: className,
     ...restProps
   });
 
@@ -29,6 +30,7 @@ export const ToggleButton: React.FC<IToggleButtonProps> = (props) => {
 
   return (
     <Button
+      type="button"
       aria-pressed={state}
       className={styles}
       onClick={onButtonClick}
