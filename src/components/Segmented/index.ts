@@ -8,5 +8,6 @@
  */
 
 export * from "./Segmented";
+export * from "./Segmented.types";
 
 export { SegmentedButton } from "./SegmentedButton";
