@@ -15,3 +15,7 @@ export const api = Axios.create({
     "Content-Type": "application/json"
   }
 });
+
+api.interceptors.response.use(
+  (response) => response.data
+);

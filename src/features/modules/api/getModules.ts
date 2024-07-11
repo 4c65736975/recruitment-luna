@@ -12,60 +12,53 @@ import { api } from "@/api/apiClient";
 import { socket } from "@/api/socketClient";
 import { MODULES_ENDPOINT } from "@/api/endpoints";
 import { IModuleUpdateMessage, Module } from "@/models/Module";
+import { queryOptions, useQuery, useQueryClient } from "@tanstack/react-query";
 
-const getModules = async () => {
-  const response = await api.get(MODULES_ENDPOINT);
-
-  return response.data;
+const getModules = (): Promise<Module[]> => {
+  return api.get(MODULES_ENDPOINT);
 };
 
-interface IUseModulesResponse {
-  modules: Module[]
-  loading: boolean
-}
+const getModulesQueryOptions = () => {
+  return queryOptions({
+    queryKey: ["modules"],
+    queryFn: getModules
+  });
+};
 
-export const useModules = (): IUseModulesResponse => {
-  const [modules, setModules] = React.useState<Module[]>([]);
-  const [loading, setLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    const getData = async () => {
-      try {
-        const data = await getModules();
-
-        setModules(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getData();
-  }, []);
+export const useModules = () => {
+  const queryClient = useQueryClient();
 
   React.useEffect(() => {
-    if (!loading && modules.length > 0) {
-      const onModuleUpdate = (message: IModuleUpdateMessage[]) => {
-        setModules(prevModules => prevModules.map(module => {
-          if (module.available) {
-            const update = message.find(msg => msg.id === module.id);
+    const onModuleUpdate = (updateMessage: IModuleUpdateMessage[]) => {
+      queryClient.setQueryData<Module[]>(["modules"], (prevData) => {
+        if (!prevData) {
+          return [];
+        }
 
-            return update ? { ...module, currentTemperature: update.temperature } : module;
+        return prevData.map(module => {
+          if (!module.available) {
+            return module;
+          }
+
+          const updated = updateMessage.find(msg => msg.id === module.id);
+
+          if (updated) {
+            return { ...module, currentTemperature: updated.temperature };
           }
 
           return module;
-        }));
-      };
+        });
+      });
+    };
 
-      socket.on("moduleUpdate", onModuleUpdate);
+    socket.on("moduleUpdate", onModuleUpdate);
 
-      return () => {
-        socket.off("moduleUpdate", onModuleUpdate);
-      };
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+    return () => {
+      socket.off("moduleUpdate", onModuleUpdate);
+    };
+  }, [queryClient]);
 
-  return { modules, loading };
+  return useQuery({
+    ...getModulesQueryOptions()
+  });
 };
