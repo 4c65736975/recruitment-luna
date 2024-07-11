@@ -24,7 +24,7 @@ export const Navigation: React.FC<INavigationProps> = (props) => {
 
       <NavigationLink
         to="/modules"
-        name="Moje moduły"
+        name="Moduły"
         icon={IotRegular}/>
 
       <div className={styles.footer}>

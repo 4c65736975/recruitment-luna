@@ -29,7 +29,7 @@ export const ModulesPage: React.FC = () => {
 
   return (
     <PageLayout
-      name="Moje moduły"
+      name="Moduły"
       extraContent={
         <Segmented
           defaultSelectedValue={listMode}
