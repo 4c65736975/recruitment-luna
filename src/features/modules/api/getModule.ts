@@ -17,18 +17,37 @@ export type TModuleParams = {
   id: string
 };
 
-interface IUseModuleResponse {
-  module: Module | null
-  loading: boolean
-}
-
 const getModule = async (moduleId: string) => {
   const response = await api.get(`${MODULES_ENDPOINT}/${moduleId}`);
 
   return response.data;
 };
 
-export const useModule = (moduleId: string): IUseModuleResponse => {
+export const useModuleTemperature = (module: Module) => {
+  const [temperature, setTemperature] = React.useState<number | null>(null);
+
+  React.useEffect(() => {
+    if (module.available) {
+      const onModuleUpdate = (message: IModuleUpdateMessage[]) => {
+        const update = message.find(msg => msg.id === module.id);
+
+        if (update) {
+          setTemperature(update.temperature);
+        }
+      };
+
+      socket.on("moduleUpdate", onModuleUpdate);
+
+      return () => {
+        socket.off("moduleUpdate", onModuleUpdate);
+      };
+    }
+  }, [module]);
+
+  return temperature;
+};
+
+export const useModule = (moduleId: string) => {
   const [module, setModule] = React.useState<Module | null>(null);
   const [loading, setLoading] = React.useState(true);
 
@@ -47,25 +66,6 @@ export const useModule = (moduleId: string): IUseModuleResponse => {
 
     getData();
   }, [moduleId]);
-
-  React.useEffect(() => {
-    if (!loading && module && module.available) {
-      const onModuleUpdate = (message: IModuleUpdateMessage[]) => {
-        const update = message.find(msg => msg.id === module.id);
-
-        if (update) {
-          setModule({...module, currentTemperature: update.temperature});
-        }
-      };
-
-      socket.on("moduleUpdate", onModuleUpdate);
-
-      return () => {
-        socket.off("moduleUpdate", onModuleUpdate);
-      };
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
 
   return { module, loading };
 };
