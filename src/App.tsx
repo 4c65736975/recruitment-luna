@@ -1,4 +1,5 @@
-import { ModulesPage } from "./pages/ModulesPage";
+import { ModulePage } from "./pages/Module";
+import { ModulesPage } from "./pages/Modules";
 import { useAppStyles } from "./App.styles";
 import { DashboardLayout } from "@/layouts/Dashboard";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/modules/:id",
-        element: <div>Place module details page</div>
+        element: <ModulePage/>
       }
     ]
   }
