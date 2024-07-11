@@ -16,6 +16,13 @@ export interface Module {
   available: boolean
 }
 
+export interface ModuleHistory {
+  timestamp: string
+  temperature: number
+}
+
+export type TModuleHistoryMode = "hourly" | "daily";
+
 export interface IModuleUpdateMessage {
   id: string
   temperature: number
