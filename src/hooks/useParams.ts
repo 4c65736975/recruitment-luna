@@ -9,7 +9,6 @@
 
 import { useParams as useRouterParams } from "react-router-dom";
 
-
 /**
  * Override useParams to get rid of TypeScript complaints about possibly undefined values.
  * Since it's a route parameter (not a query string), if the parameter doesn't exist, it means the route is different.
