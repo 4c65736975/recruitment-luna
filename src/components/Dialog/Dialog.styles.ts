@@ -20,6 +20,7 @@ export const useDialogStyles = makeStyles({
     border: `${webLightTheme.strokeWidthThick} solid ${webLightTheme.colorTransparentStroke}`,
     borderRadius: webLightTheme.borderRadiusXLarge,
     background: webLightTheme.colorNeutralBackground1,
+    boxShadow: webLightTheme.shadow64,
 
     "::backdrop": {
       background: webLightTheme.colorBackgroundOverlay
