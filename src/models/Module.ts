@@ -16,7 +16,7 @@ export interface Module {
   available: boolean
 }
 
-export interface ModuleUpdateMessage {
+export interface IModuleUpdateMessage {
   id: string
   temperature: number
 }
