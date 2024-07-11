@@ -39,7 +39,7 @@ export const usePageLayoutStyles = makeStyles({
     height: "100%",
     display: "flex",
     flexDirection: "column",
-    gap: webLightTheme.spacingVerticalXXXL,
+    gap: webLightTheme.spacingHorizontalXXL,
     padding: `${webLightTheme.spacingVerticalXXXL} ${webLightTheme.spacingHorizontalXXXL}`,
     overflowX: "hidden",
     overflowY: "auto",
