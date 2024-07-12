@@ -26,7 +26,10 @@ export const getModuleHistoryQueryOptions = (moduleId: string, mode: TModuleHist
 };
 
 export const useModuleHistory = (moduleId: string, mode: TModuleHistoryMode, start: string, stop: string) => {
+  const startDate = new Date(start).toISOString();
+  const stopDate = new Date(stop).toISOString();
+
   return useQuery({
-    ...getModuleHistoryQueryOptions(moduleId, mode, start, stop)
+    ...getModuleHistoryQueryOptions(moduleId, mode, startDate, stopDate)
   });
 };
