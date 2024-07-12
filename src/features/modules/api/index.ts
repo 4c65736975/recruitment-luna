@@ -10,3 +10,4 @@
 export * from "./getModule";
 export * from "./getModules";
 export * from "./getModuleHistory";
+export * from "./updateModule";
