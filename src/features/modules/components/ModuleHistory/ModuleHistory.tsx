@@ -69,6 +69,16 @@ export const ModuleHistory: React.FC<IModuleHistoryProps> = (props) => {
           </thead>
 
           <tbody>
+            {data?.length === 0 &&
+              <tr>
+                <td colSpan={3} style={{ textAlign: "center" }}>
+                  <Text preset="Body1Stronger">
+                    Brak danych
+                  </Text>
+                </td>
+              </tr>
+            }
+
             {data?.map(temp => {
               const date = new Date(temp.timestamp);
 
