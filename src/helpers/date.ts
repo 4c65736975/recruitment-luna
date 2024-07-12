@@ -9,16 +9,32 @@
 
 import { TModuleHistoryMode } from "@/models/Module";
 
-export const getFormattedInputDate = (isStart: boolean = true, mode: TModuleHistoryMode = "hourly") => {
-  const date = new Date();
+export const formatToInputDate = (formatDate: string, mode: TModuleHistoryMode) => {
+  const date = new Date(formatDate);
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
 
-  if (mode === "daily") {
-    return date.toISOString().slice(0, 10);
-  } else {
-    if (isStart) {
-      date.setHours(date.getHours() - 1);
-    }
+  let inputDate = `${year}-${month}-${day}`;
 
-    return date.toISOString().slice(0, 16);
+  if (mode === "hourly") {
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+
+    inputDate += `T${hours}:${minutes}`;
   }
+
+  return inputDate;
+};
+
+export const getLastHourDate = () => {
+  const startDate = new Date();
+  const stopDate = new Date();
+
+  startDate.setHours(startDate.getHours() - 1);
+
+  return {
+    start: startDate.toLocaleString(),
+    stop: stopDate.toLocaleString()
+  };
 };
