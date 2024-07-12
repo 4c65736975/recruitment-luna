@@ -18,10 +18,10 @@ const getModules = (): Promise<Module[]> => {
   return api.get(MODULES_ENDPOINT);
 };
 
-const getModulesQueryOptions = () => {
+export const getModulesQueryOptions = () => {
   return queryOptions({
     queryKey: ["modules"],
-    queryFn: getModules
+    queryFn: () => getModules()
   });
 };
 
