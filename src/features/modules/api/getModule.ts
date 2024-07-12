@@ -12,15 +12,21 @@ import { api } from "@/api/apiClient";
 import { socket } from "@/api/socketClient";
 import { MODULES_ENDPOINT } from "@/api/endpoints";
 import { IModuleUpdateMessage, Module } from "@/models/Module";
+import { queryOptions, useQuery } from "@tanstack/react-query";
 
 export type TModuleParams = {
   id: string
 };
 
-const getModule = async (moduleId: string) => {
-  const response = await api.get(`${MODULES_ENDPOINT}/${moduleId}`);
+const getModule = (moduleId: string): Promise<Module> => {
+  return api.get(`${MODULES_ENDPOINT}/${moduleId}`);
+};
 
-  return response.data;
+export const getModuleQueryOptions = (moduleId: string) => {
+  return queryOptions({
+    queryKey: ["module", moduleId],
+    queryFn: () => getModule(moduleId)
+  });
 };
 
 export const useModuleTemperature = (module: Module) => {
@@ -28,11 +34,11 @@ export const useModuleTemperature = (module: Module) => {
 
   React.useEffect(() => {
     if (module.available) {
-      const onModuleUpdate = (message: IModuleUpdateMessage[]) => {
-        const update = message.find(msg => msg.id === module.id);
+      const onModuleUpdate = (updateMessage: IModuleUpdateMessage[]) => {
+        const updated = updateMessage.find(msg => msg.id === module.id);
 
-        if (update) {
-          setTemperature(update.temperature);
+        if (updated) {
+          setTemperature(updated.temperature);
         }
       };
 
@@ -48,24 +54,7 @@ export const useModuleTemperature = (module: Module) => {
 };
 
 export const useModule = (moduleId: string) => {
-  const [module, setModule] = React.useState<Module | null>(null);
-  const [loading, setLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    const getData = async () => {
-      try {
-        const data = await getModule(moduleId);
-
-        setModule(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getData();
-  }, [moduleId]);
-
-  return { module, loading };
+  return useQuery({
+    ...getModuleQueryOptions(moduleId)
+  });
 };
