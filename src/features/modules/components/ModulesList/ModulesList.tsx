@@ -13,13 +13,13 @@ import { IModulesListProps } from "./ModulesList.types";
 import { ModulesListItem } from "./ModulesListItem";
 
 export const ModulesList:React.FC<IModulesListProps> = (props) => {
-  const { modules } = useModules();
+  const { data } = useModules();
 
   const styles = useModulesListStyles(props);
 
   return (
     <div className={styles}>
-      {modules.map(module => (
+      {data?.map(module => (
         <ModulesListItem key={module.id} module={module}/>
       ))}
     </div>
