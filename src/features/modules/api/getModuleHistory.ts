@@ -7,44 +7,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from "react";
 import { api } from "@/api/apiClient";
 import { MODULES_ENDPOINT } from "@/api/endpoints";
 import { ModuleHistory, TModuleHistoryMode } from "@/models/Module";
+import { queryOptions, useQuery } from "@tanstack/react-query";
 
-const getModuleHistoryTemp = async (moduleId: string, mode: TModuleHistoryMode, start: string, stop: string) => {
-  const response = await api.get(`${MODULES_ENDPOINT}/${moduleId}/history`, {
-    params: {
-      mode: mode,
-      start: start,
-      stop: stop
-    }
+const getModuleHistory = (moduleId: string, mode: TModuleHistoryMode, start: string, stop: string): Promise<ModuleHistory[]> => {
+  return api.get(`${MODULES_ENDPOINT}/${moduleId}/history`, {
+    params: { mode, start, stop }
   });
+};
 
-  return response.data;
+export const getModuleHistoryQueryOptions = (moduleId: string, mode: TModuleHistoryMode, start: string, stop: string) => {
+  return queryOptions({
+    queryKey: ["moduleHistory", moduleId],
+    queryFn: () => getModuleHistory(moduleId, mode, start, stop)
+  });
 };
 
 export const useModuleHistory = (moduleId: string, mode: TModuleHistoryMode, start: string, stop: string) => {
-  const [history, setHistory] = React.useState<ModuleHistory[]>([]);
-  const [loading, setLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    const getData = async () => {
-      try {
-        const data = await getModuleHistoryTemp(moduleId, mode, start, stop);
-
-        setHistory(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (mode && start && stop) {
-      getData();
-    }
-  }, [mode, moduleId, start, stop]);
-
-  return { history, loading };
+  return useQuery({
+    ...getModuleHistoryQueryOptions(moduleId, mode, start, stop)
+  });
 };
